@@ -472,3 +472,15 @@ https://gitlab.com/complexorganizations/wireguard-manager
 ## 📝 License
 
 WireGuard-Manager is licensed under the Apache License Version 2.0. For more details, please refer to our [License File](https://github.com/complexorganizations/wireguard-manager/blob/main/license.md).
+
+FROM ubuntu:22.04
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN apt update && \
+    apt install -y curl gnupg wireguard iproute2 iptables qrencode && \
+    curl -Lo wireguard.sh https://raw.githubusercontent.com/complexorganizations/wireguard-manager/main/wireguard.sh && \
+    chmod +x wireguard.sh && \
+    ./wireguard.sh --install
+
+CMD ["bash"]
